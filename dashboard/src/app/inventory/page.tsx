@@ -63,7 +63,10 @@ export default function InventoryPage() {
                           </span>
                         </td>
                         <td style={{ fontWeight: 600 }}>
-                          ${data.margin[i].toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                          ${(data.margin_amount?.[i] ?? data.margin[i]).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                          <span style={{ color: "var(--text-muted)", fontSize: 12, marginLeft: 8 }}>
+                            ({(data.margin_pct?.[i] ?? data.margin[i]).toFixed(1)}%)
+                          </span>
                         </td>
                       </tr>
                     ))}

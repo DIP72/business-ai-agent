@@ -42,7 +42,7 @@ export default function TopProducts() {
           },
           {
             label: "Margin %",
-            data: data.margin,
+            data: data.margin_pct ?? data.margin,
             backgroundColor: "rgba(16, 185, 129, 0.75)",
             borderRadius: 4,
             borderSkipped: false,
@@ -65,6 +65,12 @@ export default function TopProducts() {
             bodyFont: { family: "Inter", size: 11 },
             padding: 12,
             cornerRadius: 8,
+            callbacks: {
+              label: (context) => {
+                const value = Number(context.parsed.y ?? 0);
+                return context.dataset.label === "Margin %" ? `Margin: ${value.toFixed(1)}%` : `Stock: ${value}`;
+              },
+            },
           },
         },
         scales: {
